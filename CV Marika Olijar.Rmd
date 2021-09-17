@@ -1,0 +1,41 @@
+---
+title: "**CV**"
+author: 
+date: "Updated 9/17/2021"
+output: html_document
+---
+
+# Marika Olijar
+* Department of Political Science
+* 110 North Hall
+* 1050 Bascom Mall
+* University of Wisconsin-Madison
+* Madison, WI 53706
+* olijar@wisc.edu
+
+
+# Website 
+* https://www.linkedin.com/in/marika-olijar-045461170
+
+# Education 
+* University of Wisconsin-Madison
++ Political Science, PhD, Expected 2026
+
+* University of Pittsburgh 
++ Political Science and Slavic Studies, BA
++ Certificate in Russian, East European and Eurasian Studies
+
+# Research experience
+# Teaching experience
+# Conference presentations
+# Awards and fellowships
+# Service/volunteer work
+# Professional work experience
+# Language and skills
+* English - Native proficiency
+* Russian - Advanced
+* Ukrainian - Near native proficiency
+* Kazakh - Intermediate
+
+# References
+# Other
