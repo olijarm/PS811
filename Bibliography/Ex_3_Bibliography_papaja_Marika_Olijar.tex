@@ -1,0 +1,457 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  english,
+  man]{apa6}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Exercise 3 - Bibliography},
+  pdfauthor={Marika Olijar1},
+  pdflang={en-EN},
+  pdfkeywords={keywords},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+% Manuscript styling
+\usepackage{upgreek}
+\captionsetup{font=singlespacing,justification=justified}
+
+% Table formatting
+\usepackage{longtable}
+\usepackage{lscape}
+% \usepackage[counterclockwise]{rotating}   % Landscape page setup for large tables
+\usepackage{multirow}		% Table styling
+\usepackage{tabularx}		% Control Column width
+\usepackage[flushleft]{threeparttable}	% Allows for three part tables with a specified notes section
+\usepackage{threeparttablex}            % Lets threeparttable work with longtable
+
+% Create new environments so endfloat can handle them
+% \newenvironment{ltable}
+%   {\begin{landscape}\centering\begin{threeparttable}}
+%   {\end{threeparttable}\end{landscape}}
+\newenvironment{lltable}{\begin{landscape}\centering\begin{ThreePartTable}}{\end{ThreePartTable}\end{landscape}}
+
+% Enables adjusting longtable caption width to table width
+% Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
+\makeatletter
+\newcommand\LastLTentrywidth{1em}
+\newlength\longtablewidth
+\setlength{\longtablewidth}{1in}
+\newcommand{\getlongtablewidth}{\begingroup \ifcsname LT@\roman{LT@tables}\endcsname \global\longtablewidth=0pt \renewcommand{\LT@entry}[2]{\global\advance\longtablewidth by ##2\relax\gdef\LastLTentrywidth{##2}}\@nameuse{LT@\roman{LT@tables}} \fi \endgroup}
+
+% \setlength{\parindent}{0.5in}
+% \setlength{\parskip}{0pt plus 0pt minus 0pt}
+
+% \usepackage{etoolbox}
+\makeatletter
+\patchcmd{\HyOrg@maketitle}
+  {\section{\normalfont\normalsize\abstractname}}
+  {\section*{\normalfont\normalsize\abstractname}}
+  {}{\typeout{Failed to patch abstract.}}
+\patchcmd{\HyOrg@maketitle}
+  {\section{\protect\normalfont{\@title}}}
+  {\section*{\protect\normalfont{\@title}}}
+  {}{\typeout{Failed to patch title.}}
+\makeatother
+\shorttitle{PS 811}
+\keywords{keywords\newline\indent Word count: X}
+\DeclareDelayedFloatFlavor{ThreePartTable}{table}
+\DeclareDelayedFloatFlavor{lltable}{table}
+\DeclareDelayedFloatFlavor*{longtable}{table}
+\makeatletter
+\renewcommand{\efloat@iwrite}[1]{\immediate\expandafter\protected@write\csname efloat@post#1\endcsname{}}
+\makeatother
+\usepackage{lineno}
+
+\linenumbers
+\usepackage{csquotes}
+\ifxetex
+  % Load polyglossia as late as possible: uses bidi with RTL langages (e.g. Hebrew, Arabic)
+  \usepackage{polyglossia}
+  \setmainlanguage[]{english}
+\else
+  \usepackage[main=english]{babel}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\fi
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+  % set entry spacing
+  \ifnum #2 > 0
+  \setlength{\parskip}{#2\baselineskip}
+  \fi
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\title{Exercise 3 - Bibliography}
+\author{Marika Olijar\textsuperscript{1}}
+\date{}
+
+
+\authornote{Comparative Politics Field Seminar}
+
+\affiliation{\vspace{0.5cm}\textsuperscript{1} University of Wisconsin-Madison}
+
+\begin{document}
+\maketitle
+
+\textbf{Greif and Laitin (2004)}
+
+\textbf{Main argument}
+- Why and how do institutions change?
+- How can an institution stay around given environmental changes?
+- How can institutionally-led processes erode an institution?
+- Game-theoretic self-enforcing equilibrium and focusing on the historical process of institutions are not good ways to answer questions about endogenous institutional change.
+- Quasi-parameters over time can be self-reinforcing or self-undermining regarding institutions.
+
+\textbf{Data}
+- Historical junctures
+
+\textbf{Methods}
+Using the parameters of a repeated game (game theoretical model) (635-636)
+
+\textbf{Conclusion}
+
+Institutional behavior in equilibrium initiates incremental changes in quasi-parameters. This results in institutions being self-enforcing (649).
+
+\textbf{Magaloni (2008)}
+
+\textbf{Main argument}
+
+Dictators have to power-share with elites / ruling coalitions. A dictator's power is always in danger unless they commit to treating their ``loyal friends'' well. They must give these elites a big enough share of the pie in order to prevent a rebellion or a coup (715). Multiparty autocracies particularly succeed at doing this because this system allows for bargaining and power-sharing (715).
+
+\textbf{Data}
+
+\begin{itemize}
+\tightlist
+\item
+  political regime data from 1965 and 1980, 1990 and 2000
+\end{itemize}
+
+\textbf{Methods}
+
+\begin{itemize}
+\tightlist
+\item
+  Survival analysis
+\item
+  Markov chain process
+\end{itemize}
+
+\textbf{Conclusion}
+
+\begin{itemize}
+\tightlist
+\item
+  Dictators canreduce chances of being overthrown when they power-share and give elites and possible rivals representation (738). The elites must have enough power to solve a commitment problem (i.e.~ruling elites can appoint other elites to an organization and political institution must be durable).
+\end{itemize}
+
+\textbf{Graham and Svolik (2020)}
+
+\textbf{Main argument}
+
+\begin{itemize}
+\tightlist
+\item
+  Not many Americans prioritize democratic principles when voting due to polarization / partisanship, policy extremism, and candidate platform divergence (392). Due to these factors, voters are less likely to hold candidates accountable for violating democratic principles (393).
+\end{itemize}
+
+\textbf{Data}
+
+\begin{itemize}
+\tightlist
+\item
+  Natural Experiment: voter data in Montana 2017 for absentee and election-day voters
+\item
+  Results from a candidate-choice experiment
+\end{itemize}
+
+\textbf{Methods}
+
+\begin{itemize}
+\tightlist
+\item
+  Natural Experiment: voter data in Montana 2017
+\item
+  Candidate-choice experiment: simulation of a real-world election with candidates who have undemocratic versus neutral attributes (397)
+\end{itemize}
+
+\textbf{Conclusion}
+
+\begin{itemize}
+\tightlist
+\item
+  With the US public unwilling to punish politicians who subvert democratic principles, it is not surprising that autocrats encroach on democracy in the US context (408).
+\end{itemize}
+
+\textbf{Bhavnani (2017)}
+
+\textbf{Main argument}
+
+``Do electoral quotas for ethnic groups continue to improve their chances of winning elections after quotas are withdrawn?'' (105). Electoral quotas for scheduled castes (SCs) in India fail to increase reelected (and even renominated) after quotas are terminated. This differs from how women's quotas result in increased likelihood of being reelected.
+
+\textbf{Data}
+
+\begin{itemize}
+\tightlist
+\item
+  Look at reserved seats in India's state legislatures that were quasi-randomly assigned as open in 1974 and 2008 because they wanted reservation of whole seats, even with quotas remaining in place in other districts (107)
+\item
+  Redistrictings (1974-2008)
+\item
+  2 data sets → SC population by constituency \& database of state elections (estimating winners' castes by looking at full names of candidates) (112)
+\item
+  Using list of all candidates that ran for India's state and national lower house elections 1964-2012 (112)
+\end{itemize}
+
+\textbf{Methods}
+
+\begin{itemize}
+\tightlist
+\item
+  District-level analysis: ``by pooling observations, it accounts for the potential spillover effects of reservations within districts. Such spillover effects would obtain, for example, if reservations in one constituency make voters more tolerant of SCs in other constituencies in the same district.'' (108)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Regression 1 → controls for proportion of constituencies currently reserved for SCs (113)
+  \item
+    Regression 2 → estimates effects of past reservation quotas (113)
+  \end{itemize}
+\item
+  Name analysis: estimate caste based on candidate names
+\end{itemize}
+
+\textbf{Conclusion}
+
+\begin{itemize}
+\tightlist
+\item
+  Implications: ``temporary'' quotas in place since 1937; with these results, maybe improving the welfare of SCs should be approached differently (121)
+\item
+  SC electoral success shown with BSP in winning India's most populous state (Uttar Pradesh); SC representation may be more effective though ``old-fashioned politics'' (121)
+\end{itemize}
+
+\textbf{Acemoglu and Robinson (2006)}
+
+\textbf{Main argument}
+Theory of democratization: ``the citizens want democracy and the elites want nondemocracy, and the balance of political power between the two groups determines whether the society transits from nondemocracy to democracy'' (23). The transitory nature of political power applies, as citizens may have power today but it is uncertain if it will stay; so, it creates a demand for institutional changes.
+
+\textbf{Data}
+Provide case studies of universal male suffrage and look at conflicts between the rich and poor (23).
+
+\textbf{Methods}
+People/groups are outcome-focused and, for example, prefer more income over less; people act strategically, so we can model this with a game theoretic approach (19).
+
+\textbf{Conclusion}
+The scholars' conclude with the fact that ``changes in the structure of society's assets that may be crucial to changing the costs and benefits of democracy to the elite that lead to democratization'' not necessarily capital accumulation (83).
+
+\textbf{Claassen (2020)}
+
+\textbf{Main argument}
+Previous research says public support for democracy contributes to its survival; that democracy creates its own demand via ``early-years socialization and later-life learning, the presence of a democratic system coupled with the passage of time produces widespread public support for democracy'' (36). But that is not the case: increases in democracy lower democratic mood, while decreases in democracy raise support (36).
+
+\textbf{Data}
+- country-level data
+- data from 135 countries and up to 30 years measuring democratic mood (36)
+- country-by-year measures of democratic mood via Bayesian latent variable model
+- Varieties of Democracy measures
+
+\textbf{Methods}
+- The thermostatic model came to be to analyze the relationship between macro-opinion and policies (38).
+
+\textbf{Conclusion}
+- ``The article then attempts to unpick the puzzle of why citizens would favor diminished democracy, finding that it is not improvements in majoritarian rights and institutions that damage democratic mood, but, instead, it is improvements in counter-majoritarian rights and institutions that provoke the backlash'' (51).
+- Results show that ``thermostatic effect of changes in democracy can be traced back to the counter-majoritarian, liberal, or minoritarian components of democracy'' (50). Call for future research to look at processes of democratic socialization and learning (51).
+
+\textbf{Helmke and Levitsky (2004)}
+
+\textbf{Main argument}
+Focusing on formal institutions misses incentives present in informal institutions that also influence political behavior. Thus, political scientists should consider all ``rules of the game'' regardless of where they are written formally into state institutions or not.
+
+\textbf{Data}
+- case study
+- small N and large N comparisons
+
+\textbf{Methods}
+- tipping models
+- restricted analysis to political rules and the modern period where codification of law is pretty widespread (726)
++ thus, the analysis only applies to the modern period
+- will bring forth case study examples (some of them seem like cultural examples though i.e.~Chinese footbinding)
+
+\textbf{Conclusion}
+Focusing on formal institutions misses incentives present in informal institutions that also influence political behavior.
+
+\textbf{North (1991)}
+
+\textbf{Main argument}
+Why do some societies and exchange institutions evolve while others do not? Let's apply that framework in the context of economic development in the western hemisphere during the 18th and 19th centuries. ``In every system of exchange, economic actors have an incentive to invest their time, resources, and energy in knowledge and skills that will improve their material status. But in some primitive institutional settings, the kind of knowledge and skills that will pay off will not result in institutional evolution towards more productive economies'' (102).
+
+\textbf{Data}
+looking at economic history (97)
+- this helps establish ideas of path dependence in the conclusion
+
+\textbf{Methods}
+- rational choice theory
+- game theoretic model
+
+\textbf{Conclusion}
+Economic change is path dependent due to institutions generating increasing returns.
+
+\textbf{Tripp (2019)}
+
+\textbf{Main argument}
+Advancing women's rights was a means of staying in power / a less costly option for both authoritarian regimes and rival Islamists in the Maghreb region. Coordination between women's rights groups and unity of legal systems in each Maghreb country were also contributing factors.
+
+\textbf{Data}
+- legislative data; discriptive statistics
+- case study analysis / historical analysis
+
+\textbf{Methods}
+- This work relies on a methodologically eclectic approach, using statistical analysis when appropriate to explain alternative hypotheses, but relying primarily on process tracing.
+
+\textbf{Conclusion}
+- Morocco and Algeria have now caught up with Tunisia on women's rights legal reform, despite the latter first taking positive measures in 1956.
+- Variance in adoption of women's rights between countries of the Maghreb and the Middle East best explained by focusing on political strategies of political leaders and women's movements. - Leaders in the Maghreb countries used women's rights to 1) drive a wedge between them and Islamist extremists and 2) paint an image of their countries as modernizing.
+- Women's movements heightened their activities during critical junctures, often in face of perceived threat of losing gains.
+
+\textbf{Dincecco and Wang (2018)}
+
+\textbf{Main argument}
+- China's and Europe's contrasting political geographies contributed to a differing relationship between violent conflict and political development for both cases.
+
+\textbf{Data}
+- Case studies / historical analysis
+- Data from Western / Southern Europe compared to China
+
+\textbf{Methods}
+- Case-study comparisons
+- Most similar-systems design
+- game theoretical approach: exit-voice-loyalty model
+
+\textbf{Conclusion}
+- ``We argue in this article that the relationship between violent conflict and long-run political development depends---at least in part---on the underlying political geography context'' (352).
+- European elites could move because of political fragmentation, small state sizes, and the Western European concept of ``freedom of movement'' (348).
+- Meanwhile, China had large state size and immobile capital - a lot of emphasis placed on land ownership (348).
+
+\newpage
+
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\hypertarget{ref-acemoglu2006}{}%
+Acemoglu, D., \& Robinson, J. A. (2006). \emph{Economic {Origins} of {Dictatorship} and {Democracy}}. Cambridge University Press.
+
+\leavevmode\hypertarget{ref-bhavnani2017}{}%
+Bhavnani, R. R. (2017). Do the {Effects} of {Temporary} {Ethnic} {Group} {Quotas} {Persist}? {Evidence} from {India}. \emph{Applied Economics}, 20.
+
+\leavevmode\hypertarget{ref-claassen2020}{}%
+Claassen, C. (2020). In the {Mood} for {Democracy}? {Democratic} {Support} as {Thermostatic} {Opinion}. \emph{American Political Science Review}, \emph{114}(1), 36--53. \url{https://doi.org/10.1017/S0003055419000558}
+
+\leavevmode\hypertarget{ref-dincecco2018}{}%
+Dincecco, M., \& Wang, Y. (2018). Violent {Conflict} and {Political} {Development} {Over} the {Long} {Run}: {China} {Versus} {Europe}. \emph{Annual Review of Political Science}, \emph{21}(1), 341--358. \url{https://doi.org/10.1146/annurev-polisci-050317-064428}
+
+\leavevmode\hypertarget{ref-graham2020}{}%
+Graham, M. H., \& Svolik, M. W. (2020). Democracy in {America}? {Partisanship}, {Polarization}, and the {Robustness} of {Support} for {Democracy} in the {United} {States}. \emph{American Political Science Review}, \emph{114}(2), 392--409. \url{https://doi.org/10.1017/S0003055420000052}
+
+\leavevmode\hypertarget{ref-greif2004}{}%
+Greif, A., \& Laitin, D. D. (2004). A {Theory} of {Endogenous} {Institutional} {Change}. \emph{American Political Science Review}, \emph{98}(4), 633--652. \url{https://doi.org/10.1017/S0003055404041395}
+
+\leavevmode\hypertarget{ref-helmke2004}{}%
+Helmke, G., \& Levitsky, S. (2004). Informal {Institutions} and {Comparative} {Politics}: {A} {Research} {Agenda}. \emph{Perspectives on Politics}, \emph{2}(4), 725--740. Retrieved from \url{http://www.jstor.org/stable/3688540}
+
+\leavevmode\hypertarget{ref-magaloni2008}{}%
+Magaloni, B. (2008). Credible {Power}-{Sharing} and the {Longevity} of {Authoritarian} {Rule}. \emph{Comparative Political Studies}, \emph{41}(4-5), 715--741. \url{https://doi.org/10.1177/0010414007313124}
+
+\leavevmode\hypertarget{ref-north1991}{}%
+North, D. C. (1991). Institutions. \emph{Journal of Economic Perspectives}, \emph{5}(1), 97--112. \url{https://doi.org/10.1257/jep.5.1.97}
+
+\leavevmode\hypertarget{ref-tripp2019}{}%
+Tripp, A. M. (2019). \emph{Seeking legitimacy: Why {Arab} autocracies adopt women's rights}. Cambridge, United Kingdom: Cambridge University Press.
+
+\end{CSLReferences}
+
+\endgroup
+
+
+\end{document}
