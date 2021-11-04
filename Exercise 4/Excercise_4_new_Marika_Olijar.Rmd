@@ -60,9 +60,10 @@ head(calories_m_sd)
 ```{r}
 class(food_coded$weight)
 food_coded$weight <- as.numeric(food_coded$weight)
+food_coded$GPA <- as.numeric(food_coded$GPA)
 
-food_men <- food_coded[food_coded$Gender == 1,]
-food_women <- food_coded[food_coded$Gender == 2,]
+food_men <- food_coded[food_coded$Gender == 2,]
+food_women <- food_coded[food_coded$Gender == 1,]
 
 gpa_mean_men <- tapply(food_men$GPA, food_men$cuisine, mean, na.rm = T)
 gpa_sd_men <- tapply(food_men$GPA, food_men$cuisine, sd, na.rm = T)
