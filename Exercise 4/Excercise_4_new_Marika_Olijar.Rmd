@@ -141,9 +141,5 @@ fb_main <- fb_fact %>%
             comment_count_sd = sd(comment_count, na.rm=T))
 ```
 
-Submit
-Email me (laaker@wisc.edu) the link to your ps811-exercises repository when you are done.
-
-
 
 
