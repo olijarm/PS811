@@ -1,0 +1,88 @@
+---
+title: "812 Exercise 2 - Marika Olijar"
+author: "Marika Olijar"
+date: "10/8/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+setwd("/Users/marikaolijar/Desktop/sample_folder")
+```
+
+---
+title: "812 Exercise 2: Binomial Distribution"
+author: "Marika Olijar"
+output: pdf_document
+---
+
+# Binomial Distribution
+
+set.seed(12345)
+
+### 1) Conduct a trial of flipping a fair coin 5 times. Let heads equal a success in the trial. What is the number of successes in the trial? Then flip the coin 10 times, 50 times, 100 times, 1000, and 10000 times. What happens as the number of coin flips increases? Hint use rbinom()
+
+```{r}
+set.seed(12345)
+rbinom(5, 1, .5)
+rbinom(10, 1, .5)
+rbinom(50, 1, .5)
+rbinom(100, 1, .5)
+rbinom(1000, 1, .5)
+rbinom(10000, 1, .5)
+mean(rbinom(10000, 1, .5))
+mean(rbinom(1000, 1, .5))
+mean(rbinom(100, 1, .5))
+```
+#### For Question 1, the more coin flips, the more we approach the set mean.
+
+
+### 2) What does the binomial distribution look like? Use 1000 observations across 100 trials. Assume the coin is weighted to favor heads, so the probability of success equals 0.70. What is the mean number of successes across the trials?
+
+```{r}
+set.seed(12345)
+b_dis <- rbinom(1000, 100, .7)   
+mean(b_dis)
+```
+#### For Question 2,
+
+### 3) Create a histogram of the trials. Generate a red dashed line at the mean. Make sure the labels/titles of the histogram are appropriately labeled. Hints: use hist() and abline()
+
+```{r}
+set.seed(12345)
+library(tidyverse)
+hist(b_dis)
+abline (v = mean(b_dis), col = "red")
+```
+
+### 4) Suppose that we flip the same coin 100 times. What is the probability that the coin lands on heads 70 times? How does this compare to the data you generated in question 2? Hint: use dbinom()
+```{r}
+set.seed(12345)
+dbinom(70, 100, .7)
+```
+# dbinom -> probability that it lands on a specific value
+# #2 had rbinom which tells you  # of observations that are head when we weighted the probability with #.7 . #4, we were looking for the probability of getting 70 heads results exactly, given a certain probability odd (0.7).
+
+### 5) Suppose that we flip the same coin 100 times. What is the probability that the coin lands on heads 70 times or less? How does this compare to the data generated in question 2? Hint: use pbinom()
+```{r}
+set.seed(12345)
+pbinom(70, 100, .7)
+```
+# Pbinom will show the random variable distribution function of X, evaluated at x, is the probability that X will take a value <= to x.
+
+### 6) Every year, many people miss flights because they cancel at the last minute or are late to the airport. Research by Leder, et al. (2002) suggests that about 12% of airline passengers miss flights every year for these reasons. 
+
+### This tendency for a significant percentage of passengers to miss their flights is well known among airlines. To deal with this, airlines typically overbook seats, meaning they sell more tickets for a flight than there are seats available because they can count on a significant percentage of passengers to fail to show up. This is a somewhat risky strategy because there will be times when too many passengers show up and not all of them will be able to get seats. How often can we expect this to happen? 
+
+### We can use the binomial distribution to model an example. Suppose that there is a flight with 100 seats, and 110 tickets have been sold. What is the probability that more than 100 passengers will show up on time for this flight? I.e., how likely is it that at least one too many people will show up for this flight and be unable to board because there isn’t any space?
+```{r}
+set.seed(12345)
+pbinom(100, 110, 0.88, lower.tail = FALSE)
+#other version with the lower.tail = T 
+pbinom(9, 110, 0.12)
+```
+
+### 7) Assume that airlines only want a 5% risk that at least one too many people show up for the flight and are unable to board. How many tickets should they sell? Plot the risk of overbooking from 101-115 tickets.
+```{r}
+
+```
