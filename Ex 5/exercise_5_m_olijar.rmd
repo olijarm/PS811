@@ -1,0 +1,87 @@
+---
+title: 'Exercise 5: Functions and Loops'
+author: "Dillon Laaker"
+date: "10/28/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(dplyr)
+```
+
+# Functions
+
+1. Create a function for the mean, median, and standard deviation.
+```{r}
+national <- read.csv("national.csv")
+
+mean <- function(x) { 
+  return(mean(x))
+}
+
+
+median <- function(x) { 
+  return(median(x))
+}
+
+sd <- function(x) { 
+  return(sd(x))
+}
+```
+
+2. Create a function that finds the mean and excludes the lowest and highest value.
+```{r}
+nat_mean_sub <- function(x){
+  s <- sort(x) 
+  sub <- s[-c(1, length(s))]
+  return(sub)
+}
+```
+
+3. Apply the functions to the Christianity variables.
+```{r}
+nat_mean_sub(national$christianity_all)
+```
+
+4. Write a function that lists all the unique years with more than 300,000 Christians in total.
+```{r}
+fun_3k <- function(d,x,y){ #make a new function d will be data, x is my parameter, y is the year
+  f <- as.data.frame(d[x>300000, y]) #f is what i call the first dataframe in my data my row has to be greater than 300000 and then I select for year
+  u <- unique(f) #not i need to sleect for unique values of my year
+  return(u) #return 
+}
+
+C_300 <- fun_3k(national, national$christianity_all, 'year')
+head(C_300)
+```
+# Loops/apply
+
+1. Write a loop to find how many variables there are per observation.
+```{r}
+nrow(national)
+mat <- data.frame(matrix(ncol = 1, nrow = nrow(national)))
+for (i in 1:nrow(national)){ mat[i,1] <- ncol(national)}
+head(mat)
+```
+2. Write a loop to find the mean number of Protestant Christians in each country (i.e., the state column). Then use an apply family function to do the same.
+```{r}
+l <- unique(national$state)
+m <- data.frame(matrix(ncol = 2, nrow = nrow(data.frame(l))))
+
+for(i in 1: length(l)){
+  x<- national |> filter(state == l[i]) |>
+    summarise(m_PC = mean(christianity_protestant)) |>
+    pull(m_PC)
+  m[i, 1] <- l[i]
+  m[i, 2] <- x
+}
+```
+3. Check the column type for each variable.
+```{r}
+m2 <- tapply(national$christianity_protestant, national$state, mean)
+sapply(national,class)
+```
+
+
