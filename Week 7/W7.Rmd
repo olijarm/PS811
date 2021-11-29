@@ -1,0 +1,55 @@
+---
+title: "Graphics"
+author: "Marika Olijar"
+date: "11/19/2020"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+```
+
+Create the following graphs in `ggplot2`.
+
+1. Check out the base R built-in dataset, `data("USArrests")`.
+```{r}
+data("USArrests")
+```
+2. Create a scatterplot that looks at the correlation between murder and assault arrests. Label the x and y axes and title the graph.
+```{r}
+ggplot(USArrests) + 
+  aes(x = Murder, y = Assault) +
+   labs(title = "Aussault vs. Murder Arrests in the US") +
+  geom_point(colour = "skyblue2")
+```
+
+3. Create a boxplot of rape arrests. Label the plot.
+```{r}
+ggplot(USArrests) +
+  labs(title = "1973 Rape Arrests in the US") +
+  aes(Rape,) +
+  geom_boxplot(fill = "skyblue2", colour = "blue")
+```
+
+4. Create a barplot of the number of rape arrests per state.
+```{r}
+state.names = row.names(USArrests)
+ggplot(USArrests) +
+  aes(Rape, state.names) +
+  labs(title = "1973 Rape Arrests in US States") +
+  geom_bar(stat='identity', fill = "skyblue2", colour = "blue")
+```
+
+5. Create a histogram for the percent of urban population.
+```{r}
+state.names = row.names(USArrests)
+ggplot(USArrests) +
+  aes(UrbanPop) +
+  labs(title = "1973 % Urban Population") +
+  geom_histogram(fill = "skyblue2", colour = "blue")
+```
