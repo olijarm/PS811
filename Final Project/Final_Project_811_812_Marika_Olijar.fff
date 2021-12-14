@@ -1,0 +1,7 @@
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{/Users/marikaolijar/Desktop/sample_folder/Final Project/A7genderplot.png}
+\caption{Worry Level Disaggregated by Gender}
+\end{figure*}

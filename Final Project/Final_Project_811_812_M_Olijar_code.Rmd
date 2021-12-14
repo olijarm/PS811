@@ -1,0 +1,190 @@
+---
+title: "Final_Project_811_812_Marika_Olijar_code"
+author: "Marika Olijar"
+date: "12/10/2021"
+output:
+  pdf_document: default
+  html_document: default
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library("tidyverse")
+library("ggplot2")
+library(foreign)
+bk_data = read.spss("Base_eng.sav", to.data.frame=T) 
+write.table(bk_data, "bk_data.txt")
+write.csv(bk_data,"bk_data.csv", row.names = T)
+bk_data <- read.csv("bk_data.csv")
+class(bk_data)
+cab_2019 <- data.frame(read.csv("cab_2019_spring.csv"), row.names = T) # This is the Central Asia Barometer data being read in
+class(cab_2019)
+```
+
+## Summary Statistics of ICVS Data
+```{r}
+class(colnames(bk_data)) #Looking at code book to see which survey questions I want to harness. 
+
+
+table(is.na(bk_data$D0)) #D0: If you are married, please indicate whether you have been kidnapped by the groom and his friends for marriage (bride stealing)? 
+
+table(is.na(bk_data$D1)) #D1: If yes did you agree to this kidnapping in advance?
+
+table(is.na(bk_data$D1)) #D2: Report to Police, If you did not agree with this kidnapping, did you or anyone report the incident to the police?
+```
+
+```{r}
+library(gt)
+library(gtsummary)
+library(labelled)
+library(dplyr)
+library(vtable)
+
+bk_sum <- bk_data %>%
+  select("A7", "D0", "F1", "F2_1", "F2", "K0", "D1", "D2", "F11") %>%
+  sumtable(summ=c('notNA(x)',
+                'mean(x)',
+                'median(x)',
+                'propNA(x)'), 
+out='return')
+library(gridExtra)
+png("bk_sum.png", height = 50*nrow(bk_sum), width = 200*ncol(bk_sum))
+grid.table(bk_sum)
+dev.off() # this one is less cute of a plot, so I will use the next one in paper
+library(gtsummary)
+bk_sum_2 <- bk_data %>% select("A7", "D0", "F1", "F2_1", "F2", "K0", "D1", "D2", "F11") %>% 
+  tbl_summary() %>% 
+  modify_caption("**Summary Statistics of ICVS Data**") 
+bk_sum_2
+```
+
+```{r}
+print(bk_sum_2)
+```
+
+#Worry level for bride kidnapping
+```{r}
+A7plot <- bk_data %>% 
+  filter(!is.na(A7)) %>% # filter on non-missing values
+  ggplot(aes(x = A7, 
+             fill = A7)) +
+  geom_bar() 
+  
+A7plot_1 <- A7plot + labs(title = "How worried are you that your (grand)daughter or sister will be kidnapped by someone for marriage?", x = "worry response")
+
+A7worry <- A7plot_1 + scale_x_discrete(labels = c("1","2","3", "4", "5", "6")) + scale_y_continuous(n.breaks = 10) + theme(plot.title=element_text(size=10)) + scale_fill_discrete(name = "Legend", labels = c("Not worried at all", "A bit worried", "Quite worried", "Very worried", "Don't know", "Not applicable"))
+print(A7worry)
+```
+
+```{r}
+ggsave("A7worry.png",
+  plot = A7worry,  width = 10, height = 5) #Saved it according to the dimensions I felt were best
+```
+
+```{r}
+A7_gender_plot <- bk_data %>% 
+  filter(!is.na(A7)) %>% # filter on non-missing values
+  ggplot(aes(x = A7, 
+             fill = A7)) +
+  geom_bar() 
+
+A7genderplot <- A7_gender_plot + facet_wrap(. ~ F1) + theme(plot.title=element_text(size=10), 
+  axis.text.x = element_text(angle = 45, hjust = 1)) + scale_fill_discrete(name = "Legend", labels = c("Not worried at all", "A bit worried", "Quite worried", "Very worried", "Don't know", "Not applicable")) + scale_x_discrete(labels = element_blank()) + labs(title = "How worried are you that your (grand)daughter or sister will be kidnapped by someone for marriage?", x = "worry response")
+  
+A7genderplot 
+```
+
+```{r}
+ggsave("A7genderplot.png",
+  plot = A7genderplot,  width = 10, height = 5) #Saved it according to the dimensions I felt were best
+```
+
+# If married, who was kidnapped? Let's disaggregate by region.
+```{r}
+D0plot <- bk_data %>% 
+  filter(!is.na(D0)) %>% # filter on non-missing values
+  ggplot(aes(x = D0, 
+             fill = D0)) +
+           geom_bar() 
+  D0plot
+
+bkregion <- D0plot + facet_wrap(. ~ F11) + theme(plot.title=element_text(size=8), 
+  axis.text.x = element_text(angle = 45, hjust = 1), panel.spacing = unit(0.01, "lines"), legend.title = element_blank()) + scale_y_continuous(n.breaks = 4, limits=c(0, 40)) + scale_x_discrete(labels = element_blank()) + labs(title = "If you are married, please indicate whether you have been kidnapped by the groom and his friends for marriage (bride stealing)?", x = "bride kidnapping response")
+```
+
+```{r}
+ggsave("bkregion.png",
+  plot = bkregion,  width = 10, height = 5) #Saved it according to the dimensions I felt were best
+```
+
+# Summary Statistics for the Central Asia Barometer Data
+```{r}
+library(gt)
+library(gtsummary)
+library(labelled)
+library(dplyr)
+library(vtable)
+
+cab <- cab_2019 %>% select("GeoCode", "Gender", "Age", "Work", "Water", "Food", "Electric", "Educate" , "Ethnic_M", "Region_M", "MainNews_M", "AgeGrp", "TrustNwsPpr", "MostTrust", "MarriageStat2", "Occ2", "AccessFood") %>% 
+  tbl_summary() %>% 
+  modify_caption("**Summary Statistics of CAB Data**") 
+cab
+#geocode = urban rural
+#GendInt = M or F
+
+cab_1 <- cab_2019 %>%
+  select("GeoCode", "Gender", "Age", "Work", "Water", "Food", "Electric", "Educate" , "Ethnic_M", "Region_M", "MainNews_M", "AgeGrp", "TrustNwsPpr", "MostTrust", "MarriageStat2", "Occ2", "AccessFood") %>%
+  sumtable(summ=c('notNA(x)',
+                'mean(x)',
+                'median(x)',
+                'propNA(x)'), 
+out='return')
+library(gridExtra)
+png("cab_1.png", height = 50*nrow(bk_sum), width = 200*ncol(bk_sum))
+grid.table(cab_1)
+dev.off()
+```
+
+# What do Respondents Report About Their Material Well-Being Compared to Women? + Resource Marker
+```{r}
+access_cab <- cab_2019 %>% 
+  pivot_longer(c("Water", "Food", "Electric", "AccessFood"), names_to = "question", values_to = "response") %>%
+  ggplot(aes(x = response)) +
+  geom_bar() +
+  facet_wrap(vars(question), ncol = 3) +
+  labs(x = "Responses", y = "Number of respondents") + theme(plot.title=element_text(size=10), axis.text.x = element_text(angle = 90, hjust = 1))
+print(access_cab)
+```
+
+```{r}
+gender_cab_1 <- cab_2019 %>% 
+ pivot_longer(c("Water", "Food", "Electric", "AccessFood"), names_to = "question", values_to = "response") %>%
+  ggplot(aes(x = response)) +
+  geom_bar() +
+  facet_wrap(vars(question), ncol = 3) +
+  labs(x = "Responses", y = "Number of respondents") + theme(plot.title=element_text(size=10), axis.text.x = element_text(angle = 90, hjust = 1)) + facet_wrap(~ Gender)
+  
+gender_cab_1
+```
+
+```{r}
+ggsave("access_cab.png",
+  plot = access_cab,  width = 10, height = 5)
+
+ggsave("gender_cab_1.png",
+  plot = gender_cab_1,  width = 10, height = 5)
+```
+
+# What are the Top Media Agencies in Kazakhstan? 
+```{r}
+news <- cab_2019 %>% 
+ pivot_longer(c("MainNews_M", "TrustNwsPpr", "MostTrust"), names_to = "question", values_to = "response") %>%
+ ggplot(aes(y = response)) +
+  geom_bar() +
+  facet_wrap(vars(question), ncol = 3) +
+  labs(x = "Number of responses", y = "Responses")
+news
+```
+```{r}
+ggsave("media.png",
+  plot = news,  width = 10, height = 5)
+```

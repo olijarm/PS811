@@ -1,0 +1,116 @@
+---
+title             : "Clan, Class or State (Media)?: Evaluating the Roots of Kazakh Bride Abduction"
+shorttitle        : "Clan, Class or State (Media)?"
+
+author: 
+  - name          : "Marika Olijar"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    email         : "olijar@wisc.edu"
+
+affiliation:
+  - id            : "1"
+    institution   : "University of Wisconsin-Madison"
+
+authornote: |
+ PhD Student at University of Wisconsin-Madison in Comparative Politics
+
+abstract: |
+    What is the state media’s role in reinforcing traditionalism? What implications does traditionalization have for society and particularly  violence against women? In the case of Kazakhstan, Kazakhstan’s state media plays a role in reinforcing societal traditionalism. These policies manifest in the form of violence against women: non-consensual bride abductions have been steadily increasing in prevalence since the Soviet collapse. I argue that Kazakhstan’s re-traditionalization policies could have reinforced the salience of clan survival rather than class mobility. I build on both Kathleen Collin’s work on Central Asian clan politics and Cynthia Werner’s exploration of economic incentives for men to kidnap wives (@werner2009). Collins identifies how clans cut through class cleavages (@collins2007, 27) and provide a means for social mobility via marriage (@collins2007, 26). As the the first iteration of this project, I will generate descriptive statistics from an analysis of Central Asian Barometer data as well as International Crime Victims Survey (ICVS) data for Kazakhstan. This discriptive analysis will better prepare me to conduct a content analysis (searching for words associated with clan or class) of state-media and independent media representation of bride kidnapping in Kazakhstan. If clan salience is a better explanation than economic motives, then mitigating the practice of non-consensual bride abduction would not be a matter of solely targeting economic inequality. To what extent is women's political participation or political behavior affected by one's position in society and one's trauma? Since bride kidnapping is a patterned behavior that renders the abducted woman's choice to marry obsolete, woman's choices in other spheres of society may also be impacted.
+
+keywords          : "clan, media, rhetoric, consent, post-Soviet, nationalism, re-traditionalization, class"
+wordcount         : 1241
+
+bibliography      : ["r-references.bib"]
+
+floatsintext      : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+linenumbers       : yes
+mask              : no
+draft             : no
+
+documentclass     : "apa6"
+classoption       : "man"
+output            : papaja::apa6_pdf
+---
+
+```{r setup, include = FALSE}
+library("papaja")
+r_refs("r-references.bib")
+```
+
+```{r analysis-preferences}
+# Seed for random number generation
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
+```
+## Introduction
+Since the Soviet Collapse, Kazakh bride kidnapping has been increasing in prevalance @werner2009. Scholars have argued that economic motives may be at the heart of these kidnappings, with men kidnapping wives to secure social mobility (@werner2009). However, it is possible that clans cut through class cleavages (@collins2007, 27) and provide a means for social mobility via marriage (@collins2007, 26). 
+As the the first iteration of this project, I will generate descriptive statistics and an analysis from Central Asian Barometer data as well as International Crime Victims Survey (ICVS) data for Kazakhstan in 2018 to problematize the idea that economic motives are at the heart of bride abduction. I will, first, analyze how pervasive the practice is in Kazakhstan using the ICVS data. As @werner2009 looks at young unmarried men in particular, my first steps will evaluate the economic grievances among this group, compared to women, and then the whole population from the Central Asia Barometer. Following that analysis, I will determine which media agencies I should look at in further versions of this study. 
+This descriptive analysis will better prepare me to conduct a content analysis (searching for words associated with clan or class) of state-media and independent media representation of bride kidnapping in Kazakhstan. If clan salience is a better explanation than economic motives, then mitigating the practice of non-consensual bride abduction would not be a matter of solely targeting economic inequality. More broadly, my findings will also speak to literature on state measures in relation to informal institutions. 
+
+## Summary Statistics for the ICVS Data
+![Summary Statistics for Variables of Interest](/Users/marikaolijar/Desktop/sample_folder/Final Project/bk_n_2.png)
+Legend:
+A7: Worry level for bride kidnapping
+D0: If married, have you been subject to bride kidnapping?
+F1: Male or Female
+F2_1: Age Range
+F2: Age
+D1: Did you agree to kidnapping in advance? (If D0, yes)
+D2: Did you report to the police?
+F11: Regions of Kazakhstan
+
+## Concern for Victims of Kidnapping
+![Worry Level about Bride Kidnapping](/Users/marikaolijar/Desktop/sample_folder/Final Project/A7worry.png)
+Ultimately, those surveyed mostly did not worry about relatives being subject to bride kidnapping. However, this is not disaggregated by gender. 
+
+![Worry Level Disaggregated by Gender](/Users/marikaolijar/Desktop/sample_folder/Final Project/A7genderplot.png)
+When we disaggregate the data by gender, we see that women are "very worried" more often than men. Of course, the majority of those interviewed are still not that worried about the practice. One thing to note is that the traditional practice has two forms: one with consent and one without consent. It is possible that the people surveyed are not envisioning the non-consensual practice. It is also possible that both types of the practice are being considered by respondents, which could also lead to underreporting of worrying. Next, I look at region, to see if perhaps the prevalence of bride kidnapping is more severe in certain regions of Kazakhstan.
+
+# Kidnapping Risk
+![Bride Kidnapping Trends by Region](/Users/marikaolijar/Desktop/sample_folder/Final Project/bkregion.png)
+In Astana (now Nur-Sultan) and Almaty cities, more married women have been subject to bride kidnapping. Almaty oblast and South-Kazakhstan oblast have the next highest incidences of the practice. 
+
+## Summary Statistics for the Central Asia Barometer Data
+![Summary Statistics for Pertinent Variables](/Users/marikaolijar/Desktop/sample_folder/Final Project/cab_1.png)
+## What do Respondents Report About Their Material Well-Being Compared to Women? 
+![Are you satisfied with your access to the following? How do you feel about your Access to food?](/Users/marikaolijar/Desktop/sample_folder/Final Project/access_cab.png)
+This is an aggregate pool of responses to questions pertaining to material and resource security. The highest ammount of responses is "somewhat concerned" to "very concerned" about access to food. Food security can be an indicator of economic security. Most respondents have adequate access to electricity, food, and water. Access versus worries over access are viewed differently in the analysis (i.e. The store may be accross the street, but can you afford the products inside?). Next, I will disagreggate by gender, and pool the above responses as a "resource marker", keeping in mind that access to food is on its own scale for this analysis.
+
+
+## Our "Resource Marker"
+![Are you satisfied with your access to the following? How do you feel about your Access to food?](/Users/marikaolijar/Desktop/sample_folder/Final Project/gender_cab_1.png)
+Ultimately, women feel less materially secure than men when it comes to access to electricity, food, and water. Anxiety over food access is also felt significantly more by women. Our "resource marker" shows that women in Kazakhstan feel less economically secure than men. 
+
+
+## What does media consumption look like in Kazakhstan? 
+![What news sources are most popular and most trusted? Do people trust newspapers?](/Users/marikaolijar/Desktop/sample_folder/Final Project/media.png)
+The main news consumed comes in Kazakhstan from the internet and Kazakhstan's national television stations. It is also the most trusted content. kazakhs also watch Russian television stations. Newspapers are mostly to somewhat trusted. This media consumption is consistent with my claim that the state media may be a good vessel for Kazakh re-traditionalization mechanisms. Since some news comes from the internet, it may mean that more independent media may be available, and it would be worth it to deduce whether variation exists between state-run and independent media in terms of representation of clan and class in media articles. It is also important to note that the Kazakh government [has been increasing internet restrictions since 2017, even initiating internet shutdowns](https://www.opendemocracy.net/en/odr/internet-censorship-in-kazakhstan/) @zotero-120.
+
+# Methods
+I report how I determined my sample size, all data exclusions (if any), all manipulations, and all measures in the study in the summary statistics. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) --> 
+
+I used ICVS data from a 2018 survey conducted in Kazakhstan by @ICVS. The Central Asia Barometer Data comes from 2019. 
+
+## Procedure
+I generated summary statistics to analyze both the Central Asian Barometer data as well as International Crime Victims Survey (ICVS) data for Kazakhstan. I created various data visualizations of descriptive statistics to probe the existing theory about economic motives and bride abduction. I analyzed young men's motives and bride kidnapping's prevalence. I also determined what kind of media agencies I should look at, so that I may scrape words associated with class and clan in later iterations of this study. 
+
+## Data analysis
+I used `r cite_r("r-references.bib")` for all my analyses.
+
+# Results
+I did not find that respondents worried much about bride kidnapping, unless they were women. Certain regions have higher incidences of bride kidnapping. Access to resources like electricity, water, and food is adequate, but worries and anxiety over food access is present. Again, the worrying effect grows once the resource data is pooled then disaggregated by gender. Next, media consumption in Kazakhstan aligns well with my proposed course of action for media analysis and web-scraping. 
+
+# Discussion
+The descriptive statistics do not show correlations between men and economic concerns. Perhaps class is not a sure and solid variable through which to mediate the bride kidnapping practice. Further work should be done to conduct the content analysis suggested in the abstract and eventually infer causality. 
+\newpage
+
+# References
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+<div id="refs" custom-style="Bibliography"></div>
+\endgroup
